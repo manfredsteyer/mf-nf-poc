@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { loadRemote as loadMfRemote } from '@module-federation/enhanced/runtime';
-import { loadRemoteModule as loadNfRemote } from '@angular-architects/native-federation';
 import { RouterModule } from '@angular/router';
 
 @Component({
