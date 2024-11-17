@@ -1,6 +1,6 @@
 import { initFederation as initNativeFederation } from '@angular-architects/native-federation';
 import { init as initModuleFederation } from '@module-federation/enhanced/runtime';
-import { getShared, ShareObject } from './app/shared/federation-helpers';
+import { getShared } from './app/shared/federation-helpers';
 
 (async () => {
   // Step 1: Initialize Native Federation

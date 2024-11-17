@@ -1,5 +1,4 @@
 import { Type } from '@angular/core';
-import { loadShare } from '@module-federation/enhanced/runtime';
 
 type NativeFederationContainer = {
   __NATIVE_FEDERATION__: {
@@ -22,15 +21,17 @@ export type ShareConfig = {
   [pkgName: string]: Array<ShareObject>;
 };
 
-export async function initCrossShare(shared: ShareConfig) {
-  for (const pkg in shared) {
-    await loadShare(pkg, {
-      customShareInfo: {},
-    });
-  }
-}
+export type ShareOptions = {
+  singleton: boolean,
+  requiredVersionPrefix: '^' | '~' | '>' | '>=' | '';
+};
 
-export function getShared() {
+const defaultShareOptions: ShareOptions = {
+  singleton: false,
+  requiredVersionPrefix: ''
+};
+
+export function getShared(options = defaultShareOptions) {
   const nfc = window as unknown as NativeFederationContainer;
   const externals = nfc.__NATIVE_FEDERATION__.externals;
   const shared: ShareConfig = {};
@@ -56,8 +57,8 @@ export function getShared() {
           return () => lib;
         },
         shareConfig: {
-          singleton: true,
-          requiredVersion: version,
+          singleton: options.singleton,
+          requiredVersion: options.requiredVersionPrefix + version,
         },
       };
 
