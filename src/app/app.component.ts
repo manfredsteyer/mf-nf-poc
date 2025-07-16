@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import {sharedService} from '@one/core/shared-service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,8 @@ import { RouterModule } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor() {
+    console.log('id in shell', sharedService.id);
+  }
+}

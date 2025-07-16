@@ -1,0 +1,15 @@
+{
+    "name": "@one/core",
+    "version": "4.0.0",
+    "type": "module",
+    "scripts": {
+        "build": "rm -rf ../.angular && rm -rf node_modules/.cache && tsc && mkdir -p ../node_modules/@one/core && cp * ../node_modules/@one/core"
+    },
+    "exports": {
+        "./shared-service": {
+            "import": "./shared.service.js",
+            "types": "./shared.service.d.ts"
+        }
+    },
+    "sideEffects": true
+}
